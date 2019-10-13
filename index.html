@@ -1,27 +1,122 @@
 <!DOCTYPE html>
 <html>
+
+  <title>Twiddler</title>
+
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <link rel="stylesheet" href="main.css">
   </head>
+
   <body>
+
+    <!--left section-->
+    <section class="col1">
+      <nav>
+        <ul>
+          <li><a href="/home/"><img src="http://goinkscape.com/wp-content/uploads/2015/07/twitter-logo-final.png" alt="twitter logo" width="50"
+         height="50"></a></li>
+          <li ><a href="/home/" class="make-blue">Home</a></li>
+          <li><a href="/explore/">Explore</a></li>
+          <li><a href="/notifications/">Notifications</a></li>
+          <li><a href="/messages/">Messages</a></li>
+          <li><a href="/bookmarks/">Bookmarks</a></li>
+          <li><a href="/lists/">Lists</a></li>
+          <li><a href="/profile/">Profile</a></li>
+          <li><a href="/more/">More</a></li>
+        </ul>
+      </nav>
+    </section>
+
+    <!--middle section-->
+    <section class="col2">
+      <header class="home-top-fixed"><a href="/home/">Home</a></header>
+      <div id="send-tweet">
+        <ul>
+          <li><img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg" alt="orange kitty" width="50"
+           height="50"></li>
+           <li style="vertical-align: 18px; color:#969ca7;">What's happening?</li>
+           <li id="twiddle-button">Twiddle</li>
+         </ul>
+       </div>
+      <div class="container"></div>
+    </section>
+
+    <!--right section-->
+    <section class="col3">
+      <div class="right-list">
+        <ul>
+          <li><a href="/search_twiddler/" id="search-twiddler">Search Twiddler</a></li>
+          <li><a href="/trends_for_you/">Trends for you</a></li>
+          <li><a href="/who_to_follow/">Who to follow</a></li>
+        </ul>
+      </div>
+
+      <footer>
+        <ul>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/privacy_policy/">Privacy policy</a></li>
+          <li><a href="/cookies/">Cookies</a></li>
+          <li><a href="/ads_info/">Ads info</a></li>
+          <li><a href="/more/">More</a></li>
+          <li>2019 Twiddler, Inc.</li>
+        </ul>
+      </footer>
+    </section>
+
     <script>
-
       $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
 
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
-          index -= 1;
+        var $container = $('.container');
+        $container.html('');
+
+        // pull the data created from data_generator.js and create the list of users' tweets
+        var createTweets = function() {
+          $('.container').empty();
+
+          var index = streams.home.length - 1;
+
+          while(index >= 0){
+            var tweet = streams.home[index];
+            var $tweet = $('<div></div>').addClass("eachTweet").attr("data-user",tweet.user);
+            $tweet.text('@' + tweet.user + ': ' + tweet.message + ' · ' + tweet.created_at);
+            $tweet.appendTo($container);
+            index -= 1;
+          }
+
+          // add tweet class to all the tweets appended to the container
+          $(".container").children().addClass("tweet");
+
+          // show user's timeline when the username is clicked
+          // similiar to running createTweets function except only appending one user's tweets to the list
+          $('.eachTweet').on('click', function() {
+            var userId = $(this).attr('data-user');
+            alert("showing " + userId + "'s timeline");
+            clearInterval(setIntervalId);
+            $('.container').empty();
+
+            var index = streams.users[userId].length - 1;
+
+            while(index >= 0){
+              var tweet = streams.users[userId][index];
+              var $tweet = $('<div></div>').addClass("eachTweet").attr("data-user",tweet.user);
+              $tweet.text('@' + tweet.user + ': ' + tweet.message + ' · ' + tweet.created_at);
+              $tweet.appendTo($container);
+              index -= 1;
+            }
+            $(".container").children().addClass("tweet");
+            $('.home-top-fixed').html('@' + userId);
+          });
+
         }
+        // new tweet is created every 0-3 seconds and page is refreshed every 3 seconds to show new tweets.
+        createTweets();
+        var setIntervalId = setInterval(createTweets, 3000);
 
       });
-
     </script>
+
   </body>
+
 </html>

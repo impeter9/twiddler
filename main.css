@@ -1,0 +1,170 @@
+* {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        outline: 0;
+        font-size: 100%;
+        vertical-align: baseline;
+        background: transparent;
+    }
+
+body {
+	font-family: "Arial", "san-serif";
+}
+
+section {
+	display: inline-block;
+	vertical-align: top;
+}
+
+img {
+  border-radius: 50%;
+}
+
+/* nav */
+nav {
+	float: right;
+	height: 100%;
+}
+
+nav a{
+	text-decoration: none;
+	font-size: 20px;
+	color: black;
+}
+
+nav a:hover{
+	color:#8b8b8b;
+}
+
+nav ul li {
+	list-style-type: none;
+	font-weight: bold;
+	margin: 20px;
+}
+
+/* right-list */
+.right-list {
+	border-radius: 10px;
+}
+
+.right-list a{
+	text-decoration: none;
+	color: black;
+	font-size: 20px;
+	background-color: #f5f8fa;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+.right-list ul li {
+	list-style-type: none;
+	font-weight: bold;
+	margin: 20px 0px;
+}
+
+/* footer */
+footer {
+	display: inline;
+	font-size: 13px;
+	margin-top: 50px;
+}
+
+footer a{
+	text-decoration: none;
+	color: black;
+}
+
+footer ul li {
+	list-style-type: none;
+}
+
+/* header */
+header {
+	font-weight: bold;
+	font-size:20px;
+	border: 1px solid #e6ecf0;
+	padding: 15px;
+}
+
+header a{
+	text-decoration: none;
+	color: black;
+}
+
+header a:hover {
+	color:#8b8b8b;
+}
+
+/* classes */
+.tweet {
+	border: 1px solid #e6ecf0;
+	display: block;
+}
+
+#send-tweet {
+	border: 1px solid #e6ecf0;
+	border-bottom: 10px solid #e6ecf0;
+	padding: 20px;
+	display: block;	
+}
+
+#send-tweet ul li {
+	list-style-type: none;
+	display: inline;
+}
+
+.col1 {
+	width: 30%;
+}
+
+.col2 {
+	width: 30%;
+
+}
+
+.col2 .container {
+}
+
+.col2 .container .tweet {
+	padding: 10px;
+}
+
+.col3 {
+	width: 30%;
+	color:#13161b;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+.make-blue {
+	color:#1da1f2;
+}
+
+.make-blue:hover {
+	color:#9dd2f9;
+}
+
+#twiddle-button {
+	vertical-align: 0px; 
+	float:right; 
+	color: #ffffff; 
+	background-color:#1da1f2;
+	padding:5px
+}
+
+#twiddle-button:hover{
+	color: #ffffff;
+	background-color:#9dd2f9;
+}
+
+#search-twiddler{
+	color:#657786; 
+	background-color: #e6ecf0; 
+	font-weight: normal; 
+	font-size: 15px;
+}
+
+.eachTweet:hover {
+	color:#8b8b8b;
+}

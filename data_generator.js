@@ -42,9 +42,15 @@ var generateRandomTweet = function(){
   var tweet = {};
   tweet.user = randomElement(users);
   tweet.message = randomMessage();
-  tweet.created_at = new Date();
+  tweet.created_at = convertDate(new Date());
   addTweet(tweet);
 };
+
+function convertDate(inputFormat) {
+  function pad(s) { return (s < 10) ? '0' + s : s; }
+  var d = new Date(inputFormat)
+  return  ' (' + [pad(d.getHours()),pad(d.getMinutes()),pad(d.getSeconds())].join(':') + ' ' + [pad(d.getDate()), pad(d.getMonth()+1), d.getFullYear()].join('/') + ")"
+}
 
 for(var i = 0; i < 10; i++){
   generateRandomTweet();
@@ -52,7 +58,7 @@ for(var i = 0; i < 10; i++){
 
 var scheduleNextTweet = function(){
   generateRandomTweet();
-  setTimeout(scheduleNextTweet, Math.random() * 1500);
+  setTimeout(scheduleNextTweet, Math.random() * 3000); //generate new tweet every 0-3 seconds.
 };
 scheduleNextTweet();
 
